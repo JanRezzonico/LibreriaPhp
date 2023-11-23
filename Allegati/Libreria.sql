@@ -1,6 +1,12 @@
+DROP DATABASE IF EXISTS libreria;
+
+CREATE DATABASE libreria;
+
+USE libreria;
+
 CREATE TABLE book(
   id INT NOT NULL,
-  title VARCHAR NOT NULL,
+  title VARCHAR(45) NOT NULL,
   summary TEXT(500),
   release_year INT NOT NULL,
   `ISBN` CHAR(13) NOT NULL,
@@ -14,8 +20,8 @@ CREATE TABLE book(
 
 CREATE TABLE author(
   id INT NOT NULL,
-  `name` VARCHAR NOT NULL,
-  surname VARCHAR NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
+  surname VARCHAR(45) NOT NULL,
   birth_year INT,
   PRIMARY KEY(id)
 );
@@ -30,10 +36,11 @@ CREATE TABLE publisher(
 
 CREATE TABLE `user`(
   id INT NOT NULL,
-  username VARCHAR NOT NULL,
-  `password` VARCHAR NOT NULL,
+  username VARCHAR(45) NOT NULL,
+  `password` CHAR(72) NOT NULL,
   `admin` BOOLEAN,
-  PRIMARY KEY(id)
+  PRIMARY KEY(id),
+  CONSTRAINT unique_username UNIQUE(username)
 );
 
 ALTER TABLE book
