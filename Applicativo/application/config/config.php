@@ -23,6 +23,15 @@ $dir = str_replace('\\','/',getcwd().'/');
 $final = $actual_link.str_replace($documentRoot,'',$dir);
 
 define('URL', $final);
-
-
+try {
+    $connection = new PDO(
+        "mysql:host=" . '127.0.0.1',
+        'root',
+        ''
+    );
+    $connection->query('USE libreria');
+    define('DB_CONNECTION', $connection);
+} catch(PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
+}
 

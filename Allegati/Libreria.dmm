@@ -32,7 +32,7 @@
 					"id": "a8afa004-d2ad-43e8-889c-a1c499c8141d",
 					"name": "title",
 					"datatype": "VARCHAR",
-					"param": "",
+					"param": "45",
 					"pk": false,
 					"nn": true,
 					"list": false,
@@ -284,7 +284,7 @@
 					"id": "50b728ae-deca-4468-9709-ad385bfba521",
 					"name": "name",
 					"datatype": "VARCHAR",
-					"param": "",
+					"param": "45",
 					"pk": false,
 					"nn": true,
 					"list": false,
@@ -305,7 +305,7 @@
 					"id": "38b5d183-3c08-462d-ae67-f3f2e5522bb8",
 					"name": "surname",
 					"datatype": "VARCHAR",
-					"param": "",
+					"param": "45",
 					"pk": false,
 					"nn": true,
 					"list": false,
@@ -530,7 +530,7 @@
 					"id": "f687c1ff-bc72-4e12-875f-9c52f42affef",
 					"name": "username",
 					"datatype": "VARCHAR",
-					"param": "",
+					"param": "45",
 					"pk": false,
 					"nn": true,
 					"list": false,
@@ -550,8 +550,8 @@
 				{
 					"id": "c26123bb-6053-4776-9064-11554d1d5c20",
 					"name": "password",
-					"datatype": "VARCHAR",
-					"param": "",
+					"datatype": "CHAR",
+					"param": "72",
 					"pk": false,
 					"nn": true,
 					"list": false,
@@ -601,6 +601,17 @@
 						{
 							"id": "ce089213-5664-404b-a34c-bee8ebab560c",
 							"colid": "da3cc2cd-3fc0-44fe-b584-636468003b98"
+						}
+					]
+				},
+				{
+					"id": "1cec0d84-9cc1-46fc-bb6b-a848e9822adf",
+					"isPk": false,
+					"name": "unique_username",
+					"cols": [
+						{
+							"id": "5a6dbd44-eb4e-4a3e-a443-bb8f0a87df39",
+							"colid": "f687c1ff-bc72-4e12-875f-9c52f42affef"
 						}
 					]
 				}
@@ -691,7 +702,7 @@
 		"replaceSpace": "_",
 		"color": "transparent",
 		"sideSelections": true,
-		"isDirty": false,
+		"isDirty": true,
 		"storedin": {
 			"major": 7,
 			"minor": 4,
@@ -702,7 +713,7 @@
 			"minor": 4,
 			"extra": 2
 		},
-		"writeFileParam": false,
+		"writeFileParam": true,
 		"authorName": "",
 		"companyDetails": "",
 		"companyUrl": "",
@@ -727,7 +738,7 @@
 			"includeSchema": "always",
 			"quotation": "if_needed"
 		},
-		"lastSaved": 1700130601875
+		"lastSaved": 1700735275490
 	},
 	"otherObjects": {},
 	"diagrams": {
@@ -761,7 +772,7 @@
 					"x": 388,
 					"y": 208,
 					"gHeight": 99,
-					"gWidth": 201,
+					"gWidth": 220,
 					"color": "#ffffff",
 					"background": "#03a9f4",
 					"resized": false,
@@ -787,7 +798,7 @@
 					"x": 69,
 					"y": 418,
 					"gHeight": 99,
-					"gWidth": 207,
+					"gWidth": 226,
 					"color": "#ffffff",
 					"background": "#03a9f4",
 					"resized": false,
