@@ -10,6 +10,11 @@ class UserCreation{
 
     public function create(){
         if($_SERVER["REQUEST_METHOD"] == "POST"){
+            if(isset($_POST["admin-flag"])){
+                $admin = 1;
+            }else{
+                $admin = 0;
+            }
             if(isset($_POST["username"]) && !empty($_POST["username"])){
                 $username = $this->testInput($_POST["username"]);
             }else{
@@ -39,6 +44,19 @@ class UserCreation{
                 return;
             }
 
+            require 'application/models/user.php';
+            $res = User::createUser($username, $password, $admin);
+            if($res){
+                $created = "User created";
+                require 'application/views/templates/header.php';
+                require 'application/views/usercreation/index.php';
+                require 'application/views/templates/footer.php';
+            }else{
+                $error = "User already exist";
+                require 'application/views/templates/header.php';
+                require 'application/views/usercreation/index.php';
+                require 'application/views/templates/footer.php';
+            }
 
         }
     }
