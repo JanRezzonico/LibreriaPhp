@@ -22,6 +22,9 @@
             <?php if(isset($error)): ?>
                 <p class="text-danger"><?php echo $error?></p>
             <?php endif; ?>
+            <?php if(isset($created)): ?>
+                <p class="text-success"><?php echo $created?></p>
+            <?php endif; ?>
             <button type="submit" class="btn btn-primary">Create User</button>
         </div>
     </form>
