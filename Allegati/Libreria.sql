@@ -5,7 +5,7 @@ CREATE DATABASE libreria;
 USE libreria;
 
 CREATE TABLE book(
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   title VARCHAR(45) NOT NULL,
   summary TEXT(500),
   release_year INT NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE book(
 );
 
 CREATE TABLE author(
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   surname VARCHAR(45) NOT NULL,
   birth_year INT,
@@ -27,7 +27,7 @@ CREATE TABLE author(
 );
 
 CREATE TABLE publisher(
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   `name` INT NOT NULL,
   country INT,
   foundation_year INT,
@@ -35,10 +35,10 @@ CREATE TABLE publisher(
 );
 
 CREATE TABLE `user`(
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   username VARCHAR(45) NOT NULL,
   `password` CHAR(72) NOT NULL,
-  `admin` BOOLEAN,
+  `admin` BOOLEAN DEFAULT FALSE,
   PRIMARY KEY(id),
   CONSTRAINT unique_username UNIQUE(username)
 );

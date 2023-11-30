@@ -22,10 +22,13 @@ class Login
             require 'application/views/templates/footer.php';
             return;
         }
-        //TODO sanitazation
+        require 'application/libs/Helper.php';
+        $username = Helper::sanitize($username);
+        $pwd = Helper::sanitize($pwd);
         require 'application/models/user.php';
         try {
             $user = User::getUser($username, $pwd);
+            var_dump($user);
         } catch (Exception $e) {
         }
     }
