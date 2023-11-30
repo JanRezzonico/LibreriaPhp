@@ -15,6 +15,9 @@ class book
 
     }
     public static function editBook(){
+
+    }
+    public static function fetchBooks(){
         
     }
 }
