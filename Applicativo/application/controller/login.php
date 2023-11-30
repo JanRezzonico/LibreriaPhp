@@ -28,8 +28,19 @@ class Login
         require 'application/models/user.php';
         try {
             $user = User::getUser($username, $pwd);
-            var_dump($user);
+            session_start();
+            $_SESSION['logged'] = true;
+            $_SESSION['user_id'] = $user->id;
+            $_SESSION['username'] = $user->username;
+            $_SESSION['is_admin'] = $user->admin;
+            header("Location: " . URL . "dashboard");
+            exit();
         } catch (Exception $e) {
+            $error = "Invalid username or password";
+            require 'application/views/templates/header.php';
+            require 'application/views/login/index.php';
+            require 'application/views/templates/footer.php';
+            return;
         }
     }
 }

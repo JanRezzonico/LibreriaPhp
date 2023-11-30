@@ -6,8 +6,11 @@ class Home
 
     public function index()
     {
-        require 'application/views/templates/header.php';
-        require 'application/views/home.php';
-        require 'application/views/templates/footer.php';
+        session_start();
+        if(!$_SESSION['logged']){
+            header("Location: " . URL . "login");
+        }else{
+            header("Location: " . URL . "dashboard");
+        }
     }
 }
