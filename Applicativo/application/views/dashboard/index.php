@@ -7,20 +7,20 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto me-lg-2"> <!-- Added me-lg-2 for right margin on larger screens -->
                 <li class="nav-item">
                     <a class="nav-link" href="#">Home</a>
                 </li>
                 <?php if ($_SESSION['is_admin']): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Gestione Libri</a>
+                        <a class="nav-link" href="management">Gestione Libri</a>
                     </li>
                 <?php endif; ?>
             </ul>
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <span class="navbar-text me-2">Welcome, <?php echo $_SESSION['username']; ?></span>
+                    <span class="navbar-text me-2 me-lg-0">Welcome, <?php echo $_SESSION['username']; ?></span>
                     <a class="nav-link" href="<?php echo URL . 'login/logout' ?>">Logout</a>
                 </li>
             </ul>
