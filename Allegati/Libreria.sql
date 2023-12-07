@@ -28,8 +28,8 @@ CREATE TABLE author(
 
 CREATE TABLE publisher(
   id INT NOT NULL AUTO_INCREMENT,
-  `name` INT NOT NULL,
-  country INT,
+  `name` VARCHAR(45) NOT NULL,
+  country VARCHAR(45),
   foundation_year INT,
   PRIMARY KEY(id)
 );
@@ -38,7 +38,7 @@ CREATE TABLE `user`(
   id INT NOT NULL AUTO_INCREMENT,
   username VARCHAR(45) NOT NULL,
   `password` CHAR(72) NOT NULL,
-  `admin` BOOLEAN DEFAULT FALSE,
+  `admin` BOOLEAN,
   PRIMARY KEY(id),
   CONSTRAINT unique_username UNIQUE(username)
 );
