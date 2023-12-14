@@ -49,3 +49,9 @@ ALTER TABLE book
 ALTER TABLE book
   ADD CONSTRAINT publisher_book
     FOREIGN KEY (publisher_id) REFERENCES publisher (id);
+    
+    
+INSERT INTO author (name, surname, birth_year) VALUES ("Lil", "Pump", "1995");
+INSERT INTO author (name, surname, birth_year) VALUES ("Bob", "Marley", "1988");
+
+INSERT INTO publisher (name, country, foundation_year) VALUES ("Montadori", "Slovenia", 1945);

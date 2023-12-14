@@ -1,6 +1,6 @@
 <div class="container mt-5">
     <h2 class="text-center mb-4">Create Book</h2>
-    <form method="post" action="<?php echo URL ?>management/createbook">
+    <form method="post" action="<?php echo URL ?>management/createbook" enctype="multipart/form-data">
         <div class="form-group mb-4">
             <label for="title">Title:</label>
             <input type="text" class="form-control" id="title" placeholder="Enter title" name="title">

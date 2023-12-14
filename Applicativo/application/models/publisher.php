@@ -53,15 +53,11 @@ class Publisher
         $result = DB_CONNECTION->prepare($statement);
         $result->bindParam(':id', $id, PDO::PARAM_INT);
         $result->execute();
-        $publishers = $result->fetchAll(PDO::FETCH_OBJ);
+        $publisher = $result->fetch(PDO::FETCH_OBJ);
 
-        $all = array();
+        $p = new Publisher($publisher);
 
-        foreach ($publishers as $p){
-            $all[] = new Publisher($p);
-        }
-
-        return $all;
+        return $p;
     }
     public static function fetchPublishers(){
         $statement = 'SELECT * FROM publisher;';

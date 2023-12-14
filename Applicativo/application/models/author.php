@@ -58,7 +58,9 @@ class Author
         $result->execute();
         $author = $result->fetch(PDO::FETCH_OBJ);
 
-        return $author;
+        $a = new Author($author);
+
+        return $a;
     }
     public static function fetchAuthors(){
         $statement = 'SELECT * FROM author;';
@@ -75,6 +77,6 @@ class Author
         return $all;
     }
     public static function createAuthor(){
-
+        $statement = 'INSERT INTO ';
     }
 }
