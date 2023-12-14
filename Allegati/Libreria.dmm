@@ -130,8 +130,8 @@
 				{
 					"id": "b81e08b0-680e-4493-8754-efaaa0f8aa32",
 					"name": "cover_image",
-					"datatype": "LONGBLOB",
-					"param": "",
+					"datatype": "VARCHAR",
+					"param": "45",
 					"pk": false,
 					"nn": false,
 					"comment": "",
@@ -716,7 +716,7 @@
 			"includeSchema": "always",
 			"quotation": "if_needed"
 		},
-		"lastSaved": 1700735640000
+		"lastSaved": 1701944106000
 	},
 	"otherObjects": {},
 	"diagrams": {
@@ -735,9 +735,9 @@
 				"8abdfff4-00f7-4425-8850-a954ac4405d5": {
 					"referencedItemId": "8abdfff4-00f7-4425-8850-a954ac4405d5",
 					"x": 67,
-					"y": 179,
+					"y": 180,
 					"gHeight": 207,
-					"gWidth": 231,
+					"gWidth": 240,
 					"color": "#ffffff",
 					"background": "#03a9f4",
 					"resized": false,

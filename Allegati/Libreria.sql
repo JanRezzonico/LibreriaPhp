@@ -11,7 +11,7 @@ CREATE TABLE book(
   release_year INT NOT NULL,
   `ISBN` CHAR(13) NOT NULL,
   price DOUBLE,
-  cover_image LONGBLOB,
+  cover_image VARCHAR(45),
   copies INT NOT NULL,
   author_id INT NOT NULL,
   publisher_id INT NOT NULL,
