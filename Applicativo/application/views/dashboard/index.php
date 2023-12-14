@@ -14,12 +14,14 @@
             </tr>
             </thead>
             <tbody>
+            <?php foreach ($books as $book) : ?>
             <tr>
-                <td class="align-middle"><i class="fa-solid fa-circle-info fs-2"></i></td>
-                <td class="align-middle">Sample Title</td>
-                <td class="d-none d-md-table-cell align-middle">2022</td>
-                <td class="align-middle">John Doe</td>
-                <td class="d-none d-md-table-cell align-middle">$19.99</td>
+                <td class="align-middle"><i class="fa-solid fa-circle-info fs-2" style="color: var(--bs-blue);"></i></td>
+                <td class="align-middle"><?php echo $book->getIsbn() ?></td>
+                <td class="d-none d-md-table-cell align-middle"><?php echo $book->getTitle() ?></td>
+                <td class="align-middle"><?php echo $book->getReleaseYear() ?></td>
+                <td class="d-none d-md-table-cell align-middle"><?php echo $book->getAuthor() ?></td>
+                <td class="align-middle">CHF <?php echo $book->getPrice() ?></td>
                 <td class="align-middle">
                     <div class="input-group align-items-center">
                         <span class="input-group-btn">
@@ -27,7 +29,7 @@
                                 <i class="fas fa-minus"></i>
                             </button>
                         </span>
-                        <input type="number" name="amount" class="form-control input-number mx-1" style="max-width: 100px;" value="1" min="0">
+                        <input type="number" name="amount" class="form-control input-number mx-1" style="max-width: 100px;" value="<?php echo $book->getCopies() ?>" min="0">
                          <span class="input-group-btn">
                             <button type="button" class="btn btn-success btn-number btn-increment">
                                 <i class="fas fa-plus"></i>
@@ -39,6 +41,7 @@
                     <button type="button" class="btn btn-primary">Save</button>
                 </td>
             </tr>
+            <?php endforeach; ?>
             </tbody>
         </table>
     </div>

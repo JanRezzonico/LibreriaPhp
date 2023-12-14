@@ -11,6 +11,8 @@ class Dashboard
             header("Location: " . URL . "login");
             exit();
         }
+        require 'application/models/book.php';
+        $books = Book::fetchBooks();
         require 'application/views/templates/header.php';
         require 'application/views/dashboard/nav.php';
         require 'application/views/dashboard/index.php';
