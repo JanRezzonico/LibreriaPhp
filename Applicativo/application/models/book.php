@@ -166,7 +166,6 @@ class Book
 
 
         $book_id = DB_CONNECTION->lastInsertId();
-        var_dump($book_id);
         $book = self::getBook($book_id);
 
         return $book;

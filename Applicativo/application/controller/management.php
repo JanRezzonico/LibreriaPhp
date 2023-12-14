@@ -115,9 +115,10 @@ class Management
                 $imagename = $_FILES['cover-image']['name'];
                 $imagetemp = $_FILES['cover-image']['tmp_name'];
 
-                $book_id = Book::createBook($title, $summary, $releaseYear, $isbn, $price, $imagename, $copies, $author->getId(), $publisher->getId());
-                var_dump($book_id);
-                $imagePath = "application/libs/img/".$book_id."/";
+                $book= Book::createBook($title, $summary, $releaseYear, $isbn, $price, $imagename, $copies, $author->getId(), $publisher->getId());
+                $imagePath = "application/libs/img/".$book->getId()."/";
+
+                mkdir($imagePath);
 
                 if(is_uploaded_file($imagetemp)) {
                     if(!move_uploaded_file($imagetemp, $imagePath . $imagename)) {
@@ -128,7 +129,7 @@ class Management
                     $this->openPage("Error while upload the image");
                 }
             }
-            // $this->openPage(null,"All OK");
+            $this->openPage(null,"All OK");
         }
     }
 
