@@ -14,6 +14,7 @@ class Management
     public function createBook(){
         require_once 'application/models/author.php';
         require_once 'application/models/publisher.php';
+        require_once 'application/models/book.php';
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             if(isset($_POST["title"]) && !empty($_POST["title"])){
                 $title = $this->testInput($_POST["title"]);
@@ -109,10 +110,14 @@ class Management
                 $this->openPage("Please insert all values");
                 return;
             }
+
             if(isset($_FILES["cover-image"]) && !empty($_FILES["cover-image"])){
                 $imagename = $_FILES['cover-image']['name'];
                 $imagetemp = $_FILES['cover-image']['tmp_name'];
-                $imagePath = "application/libs/img/";
+
+                $book_id = Book::createBook($title, $summary, $releaseYear, $isbn, $price, $imagename, $copies, $author->getId(), $publisher->getId());
+                var_dump($book_id);
+                $imagePath = "application/libs/img/".$book_id."/";
 
                 if(is_uploaded_file($imagetemp)) {
                     if(!move_uploaded_file($imagetemp, $imagePath . $imagename)) {
@@ -123,8 +128,7 @@ class Management
                     $this->openPage("Error while upload the image");
                 }
             }
-            $this->openPage(null,"All OK");
-            return;
+            // $this->openPage(null,"All OK");
         }
     }
 

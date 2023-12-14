@@ -10,7 +10,7 @@ class BookInfo
             exit();
         }
         require 'application/models/book.php';
-        $book = Book::fetchBook($id);
+        $book = Book::getBook($id);
         require 'application/views/templates/header.php';
         require 'application/views/dashboard/nav.php';
         require 'application/views/book/index.php';

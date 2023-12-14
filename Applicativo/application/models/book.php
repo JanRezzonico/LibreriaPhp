@@ -93,6 +93,8 @@ class Book
     private $publisher;
     public function __construct($book)
     {
+        require_once 'application/models/author.php';
+        require_once 'application/models/publisher.php';
         $this->id = $book->id;
         $this->title = $book->title;
         $this->summary = $book->summary;
@@ -101,7 +103,8 @@ class Book
         $this->price = $book->price;
         $this->coverImage = $book->coverImage ?? "";
         $this->copies = $book->copies;
-        $this->author = $book->author_name;
+        $this->author = Author::getAuthor($book->author_id);
+        $this->publisher = Publisher::getPublisher($book->publisher_id);
     }
 
     public static function decrementBook(){
@@ -119,6 +122,8 @@ class Book
     public static function editBook(){
 
     }
+
+    //modificare querys
     public static function fetchBooks(){
         $statement = 'SELECT book.*, CONCAT(author.name, " " ,author.surname) AS author_name FROM book JOIN author ON author_id = author.id;';
         $result = DB_CONNECTION->prepare($statement);
@@ -135,12 +140,34 @@ class Book
 
         return $bookArray;
     }
-    public static function fetchBook($id){
-        $statement = 'SELECT book.*, author.*, publisher.* FROM book JOIN author ON author_id = author.id JOIN publisher ON publisher_id = publisher.id;';
+    public static function getBook($id){
+        $statement = 'SELECT * FROM book WHERE id = :id;';
         $result = DB_CONNECTION->prepare($statement);
+        $result->bindParam(":id", $id, PDO::PARAM_INT);
         $result->execute();
         $book = $result->fetch(PDO::FETCH_OBJ);
-        //$book = new Book($book);
+        $b = new Book($book);
+        return $b;
+    }
+    public static function createBook($title, $summary, $year, $isbn, $price, $cover, $copies, $author_id, $publisher_id){
+        $statement = 'INSERT INTO book (title, summary, release_year, ISBN, price, cover_image, copies, author_id, publisher_id) 
+            VALUES (:title, :summary, :release_year, :ISBN, :price, :cover, :copies, :author_id, :publisher_id)';
+        $result = DB_CONNECTION->prepare($statement);
+        $result->bindParam(":title", $title, PDO::PARAM_STR);
+        $result->bindParam(":summary", $summary, PDO::PARAM_STR);
+        $result->bindParam(":release_year", $year, PDO::PARAM_INT);
+        $result->bindParam(":ISBN", $isbn, PDO::PARAM_STR);
+        $result->bindParam(":price", $price, PDO::PARAM_STR);
+        $result->bindParam(":cover", $cover, PDO::PARAM_STR);
+        $result->bindParam(":copies", $copies, PDO::PARAM_INT);
+        $result->bindParam(":author_id", $author_id, PDO::PARAM_INT);
+        $result->bindParam(":publisher_id", $publisher_id, PDO::PARAM_INT);
+        $result->execute();
+
+
+        $book_id = DB_CONNECTION->lastInsertId();
+        var_dump($book_id);
+        $book = self::getBook($book_id);
 
         return $book;
     }

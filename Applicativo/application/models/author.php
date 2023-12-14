@@ -77,16 +77,18 @@ class Author
         return $all;
     }
     public static function createAuthor($name, $surname, $year){
-        $statement = 'INSERT INTO author (name, surname, birth_year) VALUES (:name, :surname, :year)';
+        $statement = 'INSERT INTO author (name, surname, birth_year) VALUES (:name, :surname, :year);';
         $result = DB_CONNECTION->prepare($statement);
         $result->bindParam(":name", $name, PDO::PARAM_STR);
         $result->bindParam(":surname", $surname, PDO::PARAM_STR);
         $result->bindParam(":year", $year, PDO::PARAM_INT);
         $result->execute();
 
-        $author = $result->fetchAll(PDO::FETCH_OBJ);
-        $a = new Author($author);
+        $author_id = DB_CONNECTION->lastInsertId();
+        $author = self::getAuthor($author_id);
 
-        return $a;
+        var_dump($author);
+
+        return $author;
     }
 }

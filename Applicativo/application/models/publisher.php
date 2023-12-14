@@ -81,8 +81,8 @@ class Publisher
         $result->bindParam(":year", $year, PDO::PARAM_INT);
         $result->execute();
 
-        $publisher = $result->fetchAll(PDO::FETCH_OBJ);
-        $p = new Publisher($publisher);
+        $publisher_id = DB_CONNECTION->lastInsertId();
+        $publisher = self::getPublisher($publisher_id);
 
         return $p;
     }
