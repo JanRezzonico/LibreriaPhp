@@ -135,4 +135,13 @@ class Book
 
         return $bookArray;
     }
+    public static function fetchBook($id){
+        $statement = 'SELECT book.*, author.*, publisher.* FROM book JOIN author ON author_id = author.id JOIN publisher ON publisher_id = publisher.id;';
+        $result = DB_CONNECTION->prepare($statement);
+        $result->execute();
+        $book = $result->fetch(PDO::FETCH_OBJ);
+        //$book = new Book($book);
+
+        return $book;
+    }
 }

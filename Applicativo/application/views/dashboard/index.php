@@ -16,7 +16,7 @@
             <tbody>
             <?php foreach ($books as $book) : ?>
             <tr>
-                <td class="align-middle"><i class="fa-solid fa-circle-info fs-2" style="color: var(--bs-blue);"></i></td>
+                <td class="align-middle" onclick="location.href = '/bookinfo/<?php echo $book->getId() ?>'"><i class="fa-solid fa-circle-info fs-2" style="color: var(--bs-blue);"></i></td>
                 <td class="align-middle"><?php echo $book->getIsbn() ?></td>
                 <td class="d-none d-md-table-cell align-middle"><?php echo $book->getTitle() ?></td>
                 <td class="align-middle"><?php echo $book->getReleaseYear() ?></td>
