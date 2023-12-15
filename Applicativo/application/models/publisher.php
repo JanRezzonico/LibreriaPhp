@@ -84,6 +84,6 @@ class Publisher
         $publisher_id = DB_CONNECTION->lastInsertId();
         $publisher = self::getPublisher($publisher_id);
 
-        return $p;
+        return $publisher;
     }
 }

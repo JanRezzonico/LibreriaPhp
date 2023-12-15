@@ -20,7 +20,7 @@
     </div>
     <div class="d-flex ms-auto">
         <span class="navbar-text">
-            Welcome, <?php echo $_SESSION['username']; ?>
+            Benvenuto, <?php echo $_SESSION['username']; ?>
         </span>
         <ul class="navbar-nav">
             <li class="nav-item">

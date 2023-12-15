@@ -87,8 +87,6 @@ class Author
         $author_id = DB_CONNECTION->lastInsertId();
         $author = self::getAuthor($author_id);
 
-        var_dump($author);
-
         return $author;
     }
 }

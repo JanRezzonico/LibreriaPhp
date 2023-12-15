@@ -161,11 +161,5 @@ class Book
         $result->bindParam(":author_id", $author_id, PDO::PARAM_INT);
         $result->bindParam(":publisher_id", $publisher_id, PDO::PARAM_INT);
         $result->execute();
-
-
-        $book_id = DB_CONNECTION->lastInsertId();
-        $book = self::getBook($book_id);
-
-        return $book;
     }
 }

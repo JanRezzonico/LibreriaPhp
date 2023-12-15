@@ -4,6 +4,11 @@ class Management
     public function index(){
         session_start();
         if ($_SESSION['is_admin']){
+            require_once 'application/models/author.php';
+            require_once 'application/models/publisher.php';
+            $authors = Author::fetchAuthors();
+            $publishers = Publisher::fetchPublishers();
+
             require 'application/views/templates/header.php';
             require 'application/views/templates/nav.php';
             require 'application/views/management/index.php';
@@ -119,13 +124,12 @@ class Management
             }
 
             if(isset($_FILES["cover-image"]) && !empty($_FILES["cover-image"])){
-                $imagename = $_FILES['cover-image']['name'];
                 $imagetemp = $_FILES['cover-image']['tmp_name'];
+                $imagename = $this->guidv4();
 
-                $book= Book::createBook($title, $summary, $releaseYear, $isbn, $price, $imagename, $copies, $author->getId(), $publisher->getId());
-                $imagePath = "application/libs/img/".$book->getId()."/";
+                Book::createBook($title, $summary, $releaseYear, $isbn, $price, $imagename, $copies, $author->getId(), $publisher->getId());
+                $imagePath = "application/img/";
 
-                mkdir($imagePath);
 
                 if(is_uploaded_file($imagetemp)) {
                     if(!move_uploaded_file($imagetemp, $imagePath . $imagename)) {
@@ -144,9 +148,11 @@ class Management
         require_once 'application/models/author.php';
         require_once 'application/models/publisher.php';
         $authors = Author::fetchAuthors();
-        $publisher = Publisher::fetchPublishers();
+        $publishers = Publisher::fetchPublishers();
 
+        session_start();
         require 'application/views/templates/header.php';
+        require 'application/views/templates/nav.php';
         require 'application/views/management/index.php';
         require 'application/views/templates/footer.php';
     }
@@ -156,5 +162,19 @@ class Management
         $value = stripcslashes($value);
         $value = htmlspecialchars($value);
         return $value;
+    }
+
+    function guidv4($data = null) {
+        // Generate 16 bytes (128 bits) of random data or use the data passed into the function.
+        $data = $data ?? random_bytes(16);
+        assert(strlen($data) == 16);
+
+        // Set version to 0100
+        $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
+        // Set bits 6-7 to 10
+        $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
+
+        // Output the 36 character UUID.
+        return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
     }
 }
