@@ -54,7 +54,6 @@
                     <div class="col">
                         <label for="author-year">Birth year:</label>
                         <input type="number" class="form-control" id="author-year" placeholder="Enter author birth year" name="author-year">
-
                     </div>
                 </div>
             </div>

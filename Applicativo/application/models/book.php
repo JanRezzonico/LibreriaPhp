@@ -125,20 +125,18 @@ class Book
 
     //modificare querys
     public static function fetchBooks(){
-        $statement = 'SELECT book.*, CONCAT(author.name, " " ,author.surname) AS author_name FROM book JOIN author ON author_id = author.id;';
+        $statement = 'SELECT * FROM book;';
         $result = DB_CONNECTION->prepare($statement);
         $result->execute();
         $books = $result->fetchAll(PDO::FETCH_OBJ);
 
-        if (!$books) {
-            throw new Exception();
-        }
-        $bookArray = [];
-        foreach ($books as $book){
-            $bookArray[] = new Book($book);
+        $all = array();
+
+        foreach ($books as $b){
+            $all[] = new Author($b);
         }
 
-        return $bookArray;
+        return $all;
     }
     public static function getBook($id){
         $statement = 'SELECT * FROM book WHERE id = :id;';
