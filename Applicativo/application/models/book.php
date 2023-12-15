@@ -107,12 +107,6 @@ class Book
         $this->publisher = Publisher::getPublisher($book->publisher_id);
     }
 
-    public static function decrementBook(){
-
-    }
-    public static function orderBook(){
-
-    }
     public static function addBook(){
 
     }
@@ -122,8 +116,23 @@ class Book
     public static function editBook(){
 
     }
+    public function editCopies($copies){
+        if(empty($copies)){
+            exit();
+        }
+        $copies = intval($copies);
+        $statement = 'UPDATE book SET copies = :copies WHERE id = :id';
+        $result = DB_CONNECTION->prepare($statement);
+        $id = $this->getId();
+        $result->bindParam(":id", $id, PDO::PARAM_INT);
+        $result->bindParam(":copies", $copies, PDO::PARAM_INT);
+        var_dump($this->getTitle());
+        $successful = $result->execute();
+        if($successful){
+            $this->copies = $copies;
+        }
+    }
 
-    //modificare querys
     public static function fetchBooks(){
         $statement = 'SELECT * FROM book;';
         $result = DB_CONNECTION->prepare($statement);
