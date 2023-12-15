@@ -12,7 +12,7 @@ class BookInfo
         require 'application/models/book.php';
         $book = Book::getBook($id);
         require 'application/views/templates/header.php';
-        require 'application/views/dashboard/nav.php';
+        require 'application/views/templates/nav.php';
         require 'application/views/book/index.php';
         require 'application/views/templates/footer.php';
     }

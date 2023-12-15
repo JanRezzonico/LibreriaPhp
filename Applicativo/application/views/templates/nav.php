@@ -10,7 +10,10 @@
             </li>
             <?php if ($_SESSION['is_admin']): ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="management">Gestione Libri</a>
+                    <a class="nav-link" href="<?php echo URL . 'management' ?>">Gestione Libri</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo URL . 'usercreation' ?>">Crea Utente</a>
                 </li>
             <?php endif; ?>
         </ul>

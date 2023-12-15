@@ -3,9 +3,16 @@
 class UserCreation{
 
     public function index(){
-        require 'application/views/templates/header.php';
-        require 'application/views/usercreation/index.php';
-        require 'application/views/templates/footer.php';
+        session_start();
+        if ($_SESSION['is_admin']) {
+            require 'application/views/templates/header.php';
+            require 'application/views/templates/nav.php';
+            require 'application/views/usercreation/index.php';
+            require 'application/views/templates/footer.php';
+        }else{
+            header('location: /dashboard');
+        }
+
     }
 
     public function create(){

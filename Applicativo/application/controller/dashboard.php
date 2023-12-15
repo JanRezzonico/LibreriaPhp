@@ -14,7 +14,7 @@ class Dashboard
         require 'application/models/book.php';
         $books = Book::fetchBooks();
         require 'application/views/templates/header.php';
-        require 'application/views/dashboard/nav.php';
+        require 'application/views/templates/nav.php';
         require 'application/views/dashboard/index.php';
         require 'application/views/templates/footer.php';
     }
