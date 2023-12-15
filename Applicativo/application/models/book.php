@@ -133,7 +133,7 @@ class Book
         $all = array();
 
         foreach ($books as $b){
-            $all[] = new Author($b);
+            $all[] = new Book($b);
         }
 
         return $all;
