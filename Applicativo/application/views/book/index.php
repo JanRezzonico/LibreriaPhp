@@ -30,7 +30,7 @@
         </div>
         <div class="form-group mb-4">
             <label>Foto di copertina:</label>
-            <img src="application/img/<?php echo $book->getCoverImage() ?>" style="width: 200px;">
+            <img src="application/img/<?php echo $book->getCoverImage()?>" style="width: 200px;">
         </div>
         <div class="form-group mb-4">
             <label>Autore:</label>

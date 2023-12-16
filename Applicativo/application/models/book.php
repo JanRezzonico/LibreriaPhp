@@ -101,7 +101,7 @@ class Book
         $this->releaseYear = $book->release_year;
         $this->isbn = $book->ISBN;
         $this->price = $book->price;
-        $this->coverImage = $book->coverImage ?? "";
+        $this->coverImage = $book->cover_image;
         $this->copies = $book->copies;
         $this->author = Author::getAuthor($book->author_id);
         $this->publisher = Publisher::getPublisher($book->publisher_id);

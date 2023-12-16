@@ -16,6 +16,7 @@ class UserCreation{
     }
 
     public function create(){
+        session_start();
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             if(isset($_POST["admin-flag"])){
                 $admin = 1;
@@ -27,6 +28,7 @@ class UserCreation{
             }else{
                 $error = "Please insert an username";
                 require 'application/views/templates/header.php';
+                require 'application/views/templates/nav.php';
                 require 'application/views/usercreation/index.php';
                 require 'application/views/templates/footer.php';
                 return;
@@ -39,6 +41,7 @@ class UserCreation{
                 }else{
                     $error = "Please insert the same password";
                     require 'application/views/templates/header.php';
+                    require 'application/views/templates/nav.php';
                     require 'application/views/usercreation/index.php';
                     require 'application/views/templates/footer.php';
                     return;
@@ -46,6 +49,7 @@ class UserCreation{
             }else{
                 $error = "Please insert the password two times";
                 require 'application/views/templates/header.php';
+                require 'application/views/templates/nav.php';
                 require 'application/views/usercreation/index.php';
                 require 'application/views/templates/footer.php';
                 return;
@@ -56,11 +60,13 @@ class UserCreation{
             if($res){
                 $created = "User created";
                 require 'application/views/templates/header.php';
+                require 'application/views/templates/nav.php';
                 require 'application/views/usercreation/index.php';
                 require 'application/views/templates/footer.php';
             }else{
                 $error = "User already exist";
                 require 'application/views/templates/header.php';
+                require 'application/views/templates/nav.php';
                 require 'application/views/usercreation/index.php';
                 require 'application/views/templates/footer.php';
             }
