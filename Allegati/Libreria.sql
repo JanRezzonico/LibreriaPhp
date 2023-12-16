@@ -13,6 +13,7 @@ CREATE TABLE book(
   price DOUBLE,
   cover_image CHAR(36),
   copies INT NOT NULL,
+  ordered BOOLEAN DEFAULT FALSE,
   author_id INT NOT NULL,
   publisher_id INT NOT NULL,
   PRIMARY KEY(id)

@@ -81,6 +81,22 @@ class Book
     {
         return $this->publisher;
     }
+    /**
+     * @return mixed
+     */
+    public function getOrdered()
+    {
+        return $this->ordered;
+    }
+    public function getStatus(){
+        if($this->copies > 3){
+            return "Disponibile";
+        }
+        if($this->ordered){
+            return "In ordinazione";
+        }
+        return $this->copies == 0 ? "Non disponibile" : "Da ordinare";
+    }
     private $id;
     private $title;
     private $summary;
@@ -91,6 +107,8 @@ class Book
     private $copies;
     private $author;
     private $publisher;
+    private $ordered;
+
     public function __construct($book)
     {
         require_once 'application/models/author.php';
@@ -103,6 +121,7 @@ class Book
         $this->price = $book->price;
         $this->coverImage = $book->coverImage ?? "";
         $this->copies = $book->copies;
+        $this->ordered = $book->ordered;
         $this->author = Author::getAuthor($book->author_id);
         $this->publisher = Publisher::getPublisher($book->publisher_id);
     }

@@ -10,6 +10,7 @@
                 <th scope="col">Autore</th>
                 <th scope="col">Prezzo</th>
                 <th scope="col" class="d-none d-md-table-cell">Numero Copie</th>
+                <th scope="col">Stato</th>
                 <th scope="col" class="d-none d-md-table-cell"></th>
             </tr>
             </thead>
@@ -37,6 +38,9 @@
                                 </button>
                             </span>
                         </div>
+                    </td>
+                    <td>
+                        <?php echo $book->getStatus() ?>
                     </td>
                     <td class="d-none d-md-table-cell align-middle">
                         <button type="submit" class="btn btn-primary">Salva</button>
