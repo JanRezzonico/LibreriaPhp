@@ -27,6 +27,9 @@
                 <input type="number" class="form-control" name="copies" value="<?php echo $book->getCopies() ?>" style="flex: 3;">
                 <button type="submit" class="btn btn-primary"  style="flex: 1">Salva</button>
             </div>
+            <label>In ordinazione:</label>
+            <input type="hidden" name="ordered" value="off">
+            <input type="checkbox" name="ordered" value="on" <?php echo $book->getOrdered() ? "checked" : "" ?>>
         </div>
         <div class="form-group mb-4">
             <label>Foto di copertina:</label>

@@ -90,12 +90,12 @@ class Book
     }
     public function getStatus(){
         if($this->copies > 3){
-            return "Disponibile";
+            return 'Disponibile';
         }
         if($this->ordered){
-            return "In ordinazione";
+            return 'In ordinazione';
         }
-        return $this->copies == 0 ? "Non disponibile" : "Da ordinare";
+        return $this->copies == 0 ? 'Non disponibile' : 'Da ordinare';
     }
     private $id;
     private $title;
@@ -121,7 +121,7 @@ class Book
         $this->price = $book->price;
         $this->coverImage = $book->cover_image;
         $this->copies = $book->copies;
-        $this->ordered = $book->ordered;
+        $this->ordered = $book->ordered == 1;
         $this->author = Author::getAuthor($book->author_id);
         $this->publisher = Publisher::getPublisher($book->publisher_id);
     }
@@ -135,17 +135,25 @@ class Book
     public static function editBook(){
 
     }
-    public function editCopies($copies){
-        if(empty($copies)){
+    public function editCopies($copies, $ordered = null){
+        if(empty($copies) && $copies != "0"){
             exit();
         }
         $copies = intval($copies);
-        $statement = 'UPDATE book SET copies = :copies WHERE id = :id';
+
+        $statement = 'UPDATE book SET copies = :copies, ordered = :ordered WHERE id = :id';
+        if(is_null($ordered)){
+            $statement = 'UPDATE book SET copies = :copies WHERE id = :id';
+        }
         $result = DB_CONNECTION->prepare($statement);
         $id = $this->getId();
         $result->bindParam(":id", $id, PDO::PARAM_INT);
         $result->bindParam(":copies", $copies, PDO::PARAM_INT);
-        var_dump($this->getTitle());
+
+        if(!is_null($ordered)) {
+            $ordered = $ordered ? 1 : 0;
+            $result->bindParam(":ordered", $ordered, PDO::PARAM_INT);
+        }
         $successful = $result->execute();
         if($successful){
             $this->copies = $copies;

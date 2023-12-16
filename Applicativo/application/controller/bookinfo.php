@@ -33,7 +33,11 @@ class BookInfo
         if(!isset($_POST['copies'])){
             exit();
         }
-        $book->editCopies($_POST['copies']);
+        $ordered = null;
+        if(isset($_POST['ordered'])){
+           $ordered = $_POST['ordered'] == 'on';
+        }
+        $book->editCopies($_POST['copies'], $ordered);
         header("Location: " . URL . "dashboard");
     }
 }

@@ -4,9 +4,7 @@
             <thead>
             <tr>
                 <th scope="col"></th>
-                <th scope="col" class="d-none d-md-table-cell">ISBN</th>
                 <th scope="col">Titolo</th>
-                <th scope="col" class="d-none d-md-table-cell">Anno</th>
                 <th scope="col">Autore</th>
                 <th scope="col">Prezzo</th>
                 <th scope="col" class="d-none d-md-table-cell">Numero Copie</th>
@@ -19,9 +17,7 @@
             <tr>
                 <form class="update-copies-form" method="post" action="<?php echo URL ?>bookinfo/update/<?php echo $book->getId() ?>">
                     <td class="align-middle" onclick="location.href = '/bookinfo/book/<?php echo $book->getId() ?>'"><i class="fa-solid fa-circle-info fs-2" style="color: var(--bs-blue);"></i></td>
-                    <td class="d-none d-md-table-cell align-middle"><?php echo $book->getIsbn() ?></td>
                     <td class="align-middle"><?php echo $book->getTitle() ?></td>
-                    <td class="d-none d-md-table-cell align-middle"><?php echo $book->getReleaseYear() ?></td>
                     <td class="align-middle"><?php echo $book->getAuthor()->getName() . " " . $book->getAuthor()->getSurname() ?></td>
                     <td class="align-middle">CHF <?php echo $book->getPrice() ?></td>
                     <td class="d-none d-md-table-cell align-middle">
@@ -40,7 +36,28 @@
                         </div>
                     </td>
                     <td>
-                        <?php echo $book->getStatus() ?>
+                        <div class="d-flex align-items-center" style="gap: 5px">
+                            <?php
+                            $status = $book->getStatus();
+                            $icon = "";
+                            switch ($status){
+                                case "Disponibile":
+                                    $icon = '<i class="fa-solid fa-check"></i>';
+                                    break;
+                                case "In ordinazione":
+                                    $icon = '<i class="fa-solid fa-truck"></i>';
+                                    break;
+                                case "Non disponibile":
+                                    $icon = '<i class="fa-solid fa-x"></i>';
+                                    break;
+                                case "Da ordinare":
+                                    $icon = '<i class="fa-solid fa-cart-shopping"></i>';
+                                    break;
+                            }
+                            echo $icon;
+                            echo "<span>$status</span>";
+                            ?>
+                        </div>
                     </td>
                     <td class="d-none d-md-table-cell align-middle">
                         <button type="submit" class="btn btn-primary">Salva</button>
