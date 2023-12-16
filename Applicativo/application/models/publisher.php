@@ -77,7 +77,7 @@ class Publisher
         $statement = 'INSERT INTO publisher (name, country, foundation_year) VALUES (:name, :country, :year)';
         $result = DB_CONNECTION->prepare($statement);
         $result->bindParam(":name", $name, PDO::PARAM_STR);
-        $result->bindParam(":country", $surname, PDO::PARAM_STR);
+        $result->bindParam(":country", $country, PDO::PARAM_STR);
         $result->bindParam(":year", $year, PDO::PARAM_INT);
         $result->execute();
 
