@@ -55,4 +55,25 @@ class BookInfo
         $book->removeBook();
         header("Location: " . URL . "dashboard");
     }
+
+    public function edit($id){
+        session_start();
+        if(!$_SESSION['is_admin']){
+            header("Location: " . URL . "login");
+            exit();
+        }
+        require 'application/models/book.php';
+        require_once 'application/models/author.php';
+        require_once 'application/models/publisher.php';
+        $book = Book::getBook($id);
+        if(!$book){
+            header("Location: " . URL . "dashboard");
+        }
+        $authors = Author::fetchAuthors();
+        $publishers = Publisher::fetchPublishers();
+        require 'application/views/templates/header.php';
+        require 'application/views/templates/nav.php';
+        require 'application/views/book/edit.php';
+        require 'application/views/templates/footer.php';
+    }
 }

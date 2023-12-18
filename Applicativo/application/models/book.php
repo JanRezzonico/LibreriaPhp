@@ -141,8 +141,31 @@ class Book
         $result->bindParam(":id", $id, PDO::PARAM_INT);
         $result->execute();
     }
-    public static function editBook(){
+    public function editBook($title, $summary, $year, $isbn, $price, $cover, $copies, $author_id, $publisher_id){
+        $statement = 'UPDATE book SET title = :title,
+                summary = :summary,
+                release_year = :release_year,
+                ISBN = :ISBN,
+                price = :price,
+                cover_image = :cover,
+                copies = :copies,
+                author_id = :author_id,
+                publisher_id = :publisher_id
+                WHERE id = :id';
+        $result = DB_CONNECTION->prepare($statement);
+        $id = $this->getId();
+        $result->bindParam(":id", $id, PDO::PARAM_INT);
+        $result->bindParam(":title", $title, PDO::PARAM_STR);
+        $result->bindParam(":summary", $summary, PDO::PARAM_STR);
+        $result->bindParam(":release_year", $year, PDO::PARAM_INT);
+        $result->bindParam(":ISBN", $isbn, PDO::PARAM_STR);
+        $result->bindParam(":price", $price, PDO::PARAM_STR);
+        $result->bindParam(":cover", $cover, PDO::PARAM_STR);
+        $result->bindParam(":copies", $copies, PDO::PARAM_INT);
+        $result->bindParam(":author_id", $author_id, PDO::PARAM_INT);
+        $result->bindParam(":publisher_id", $publisher_id, PDO::PARAM_INT);
 
+        $result->execute();
     }
     public function editCopies($copies, $ordered = null){
         if(empty($copies) && $copies != "0"){

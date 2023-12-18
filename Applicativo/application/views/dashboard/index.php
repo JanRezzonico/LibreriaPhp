@@ -1,3 +1,10 @@
+<style>
+    td, th{
+        text-align: center;
+    }
+
+</style>
+
 <div class="container mt-5">
     <div class="table-responsive">
         <table class="table">
@@ -11,6 +18,7 @@
                 <th scope="col">Stato</th>
                 <th scope="col" class="d-none d-md-table-cell"></th>
                 <?php if($_SESSION['is_admin']):?>
+                    <th scope="col" class="d-none d-md-table-cell">Modifica</th>
                     <th scope="col" class="d-none d-md-table-cell">Rimuovi</th>
                 <?php endif;?>
             </tr>
@@ -39,7 +47,7 @@
                         </div>
                     </td>
                     <td>
-                        <div class="d-flex align-items-center" style="gap: 5px">
+                        <div class="d-flex align-items-center justify-content-between" style="gap: 5px">
                             <?php
                             $status = $book->getStatus();
                             $icon = "";
@@ -66,15 +74,22 @@
                         <button type="submit" class="btn btn-primary">Salva</button>
                     </td>
                 </form>
-                <form method="post" action="<?php echo URL ?>bookinfo/delete/<?php echo $book->getId() ?>">
-                    <?php if($_SESSION['is_admin']):?>
+                <?php if($_SESSION['is_admin']):?>
+                    <form method="post" action="<?php echo URL ?>bookinfo/edit/<?php echo $book->getId() ?>">
+                        <td class="d-none d-md-table-cell align-middle">
+                            <button type="submit" class="btn btn-warning">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                        </td>
+                    </form>
+                    <form method="post" action="<?php echo URL ?>bookinfo/delete/<?php echo $book->getId() ?>">
                         <td class="d-none d-md-table-cell align-middle">
                             <button type="submit" class="btn btn-danger">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                         </td>
-                    <?php endif;?>
-                </form>
+                    </form>
+               <?php endif;?>
             </tr>
             <?php endforeach; ?>
             </tbody>
