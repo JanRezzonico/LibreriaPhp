@@ -18,13 +18,13 @@
                 <th scope="col"></th>
                 <th scope="col">Titolo</th>
                 <th scope="col">Autore</th>
-                <th scope="col">Prezzo</th>
+                <th scope="col" class="d-none d-md-table-cell">Prezzo</th>
                 <th scope="col" class="d-none d-md-table-cell">Numero Copie</th>
-                <th scope="col">Stato</th>
+                <th scope="col" class="d-none d-md-table-cell">Stato</th>
                 <th scope="col" class="d-none d-md-table-cell"></th>
                 <?php if($_SESSION['is_admin']):?>
-                    <th scope="col" class="d-none d-md-table-cell">Modifica</th>
-                    <th scope="col" class="d-none d-md-table-cell">Rimuovi</th>
+                    <th scope="col">Modifica</th>
+                    <th scope="col">Rimuovi</th>
                 <?php endif;?>
             </tr>
             </thead>
@@ -35,7 +35,7 @@
                     <td class="align-middle" onclick="location.href = '/bookinfo/book/<?php echo $book->getId() ?>'"><i class="fa-solid fa-circle-info fs-2" style="color: var(--bs-blue);"></i></td>
                     <td class="align-middle"><?php echo $book->getTitle() ?></td>
                     <td class="align-middle"><?php echo $book->getAuthor()->getName() . " " . $book->getAuthor()->getSurname() ?></td>
-                    <td class="align-middle">CHF <?php echo $book->getPrice() ?></td>
+                    <td class="d-none d-md-table-cell align-middle">CHF <?php echo $book->getPrice() ?></td>
                     <td class="d-none d-md-table-cell align-middle">
                         <div class="input-group align-items-center">
                             <span class="input-group-btn">
@@ -51,7 +51,7 @@
                             </span>
                         </div>
                     </td>
-                    <td>
+                    <td class="d-none d-md-table-cell">
                         <div class="d-flex align-items-center justify-content-between" style="gap: 5px">
                             <?php
                             $status = $book->getStatus();
@@ -81,14 +81,14 @@
                 </form>
                 <?php if($_SESSION['is_admin']):?>
                     <form method="post" action="<?php echo URL ?>bookinfo/edit/<?php echo $book->getId() ?>">
-                        <td class="d-none d-md-table-cell align-middle">
+                        <td class="align-middle">
                             <button type="submit" class="btn btn-warning">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>
                         </td>
                     </form>
                     <form method="post" action="<?php echo URL ?>bookinfo/delete/<?php echo $book->getId() ?>">
-                        <td class="d-none d-md-table-cell align-middle">
+                        <td class="align-middle">
                             <button type="submit" class="btn btn-danger">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
