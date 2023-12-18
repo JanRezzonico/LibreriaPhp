@@ -1,6 +1,11 @@
 <div class="container mt-5">
+    <?php if($_SESSION['is_admin']) : ?>
+        <div>
+            <input id="search-input" type="text" class="form-control my-2" placeholder="Ricerca:" style="width: 50%">
+        </div>
+    <?php endif; ?>
     <div class="table-responsive">
-        <table class="table">
+        <table class="table" id="book-table">
             <thead>
             <tr>
                 <th scope="col"></th>
@@ -63,7 +68,7 @@
                         </div>
                     </td>
                     <td class="d-none d-md-table-cell align-middle">
-                        <button type="submit" class="btn btn-primary">Salva</button>
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i></button>
                     </td>
                 </form>
                 <form method="post" action="<?php echo URL ?>bookinfo/delete/<?php echo $book->getId() ?>">
@@ -79,6 +84,9 @@
             <?php endforeach; ?>
             </tbody>
         </table>
+        <div id="no-matching" class="d-flex justify-content-center d-none">
+            <span class="text-center">Nessun libro soddisfa il parametro di ricerca.</span>
+        </div>
     </div>
 </div>
 
@@ -104,6 +112,26 @@
             }
 
             inputElement.val(currentValue + 1);
+        });
+        function filterTable() {
+            let searchText = $('#search-input').val().toLowerCase();
+            let matchingCount = 0;
+
+            $('#book-table tbody tr').each(function () {
+                let rowText = $(this).text().toLowerCase();
+                if (rowText.includes(searchText)) {
+                    $(this).show();
+                    matchingCount++;
+                } else {
+                    $(this).hide();
+                }
+            });
+            $('#no-matching').toggleClass('d-none', matchingCount !== 0);
+            $('#book-table thead').toggleClass('d-none', matchingCount === 0);
+        }
+        filterTable();
+        $('#search-input').on('input', function () {
+            filterTable();
         });
     });
 </script>
