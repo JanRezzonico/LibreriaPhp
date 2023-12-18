@@ -3,7 +3,7 @@
     <form id="update-copies-form">
         <div class="form-group mb-4">
             <label>Titolo:</label>
-            <input type="text" class="form-control" disabled value="<?php echo $book->getTitle() ?>">
+            <input type="text" class="form-control" <?php echo $_SESSION['is_admin'] ? "" : "disabled"?> value="<?php echo $book->getTitle() ?>">
         </div>
         <div class="form-group mb-4">
             <label>Sommario:</label>

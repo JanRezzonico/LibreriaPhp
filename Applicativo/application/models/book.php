@@ -129,8 +129,12 @@ class Book
     public static function addBook(){
 
     }
-    public static function removeBook(){
-
+    public function removeBook(){
+        $statement = 'DELETE FROM book WHERE id = :id';
+        $result = DB_CONNECTION->prepare($statement);
+        $id = $this->getId();
+        $result->bindParam(":id", $id, PDO::PARAM_INT);
+        $result->execute();
     }
     public static function editBook(){
 

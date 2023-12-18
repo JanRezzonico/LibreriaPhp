@@ -40,4 +40,19 @@ class BookInfo
         $book->editCopies($_POST['copies'], $ordered);
         header("Location: " . URL . "dashboard");
     }
+
+    public function delete($id){
+        session_start();
+        if(!$_SESSION['logged']){
+            header("Location: " . URL . "login");
+            exit();
+        }
+        require 'application/models/book.php';
+        $book = Book::getBook($id);
+        if(!$book){
+            header("Location: " . URL . "dashboard");
+        }
+        $book->removeBook();
+        header("Location: " . URL . "dashboard");
+    }
 }
