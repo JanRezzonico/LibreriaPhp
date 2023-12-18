@@ -130,6 +130,11 @@ class Book
 
     }
     public function removeBook(){
+        $path = "application/img/".$this->getCoverImage();
+        if(file_exists($path)){
+            unlink($path);
+        }
+
         $statement = 'DELETE FROM book WHERE id = :id';
         $result = DB_CONNECTION->prepare($statement);
         $id = $this->getId();
