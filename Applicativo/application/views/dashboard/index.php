@@ -129,9 +129,11 @@
             inputElement.val(currentValue + 1);
         });
         function filterTable() {
+            if(!<?php echo $_SESSION['is_admin'] ?>){
+                return;
+            }
             let searchText = $('#search-input').val().toLowerCase();
             let matchingCount = 0;
-
             $('#book-table tbody tr').each(function () {
                 let rowText = $(this).text().toLowerCase();
                 if (rowText.includes(searchText)) {
