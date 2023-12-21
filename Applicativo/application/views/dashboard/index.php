@@ -4,7 +4,21 @@
     }
 
 </style>
-
+<script>
+    function deleteBook(id, title){
+        const confirmation = window.confirm(`Sei sicuro di voler eliminare il libro '${title}'?`);
+        if(!confirmation){
+            return;
+        }
+        $.ajax({
+            url: `<?php echo URL ?>bookinfo/delete/${id}`,
+            type: 'POST',
+            processData: false,
+            contentType: false
+        });
+        window.location.reload();
+    }
+</script>
 <div class="container mt-5">
     <?php if($_SESSION['is_admin']) : ?>
         <div>
@@ -15,7 +29,9 @@
         <table class="table" id="book-table">
             <thead>
             <tr>
+                <?php if(!$_SESSION['is_admin']):?>
                 <th scope="col"></th>
+                <?php endif;?>
                 <th scope="col">Titolo</th>
                 <th scope="col">Autore</th>
                 <th scope="col" class="d-none d-md-table-cell">Prezzo</th>
@@ -32,7 +48,9 @@
             <?php foreach ($books as $book) : ?>
             <tr>
                 <form class="update-copies-form" method="post" action="<?php echo URL ?>bookinfo/update/<?php echo $book->getId() ?>">
+                    <?php if(!$_SESSION['is_admin']):?>
                     <td class="align-middle" onclick="location.href = '/bookinfo/book/<?php echo $book->getId() ?>'"><i class="fa-solid fa-circle-info fs-2" style="color: var(--bs-blue);"></i></td>
+                    <?php endif;?>
                     <td class="align-middle"><?php echo $book->getTitle() ?></td>
                     <td class="align-middle"><?php echo $book->getAuthor()->getName() . " " . $book->getAuthor()->getSurname() ?></td>
                     <td class="d-none d-md-table-cell align-middle">CHF <?php echo $book->getPrice() ?></td>
@@ -87,20 +105,18 @@
                             </button>
                         </td>
                     </form>
-                    <form method="post" action="<?php echo URL ?>bookinfo/delete/<?php echo $book->getId() ?>">
-                        <td class="align-middle">
-                            <button type="submit" class="btn btn-danger">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </td>
-                    </form>
+                    <td class="align-middle">
+                        <button type="button" onclick="deleteBook(<?php echo $book->getId() ?>, '<?php echo $book->getTitle() ?>')" class="btn btn-danger">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
                <?php endif;?>
             </tr>
             <?php endforeach; ?>
             </tbody>
         </table>
         <div id="no-matching" class="d-flex justify-content-center d-none">
-            <span class="text-center">Nessun libro soddisfa il parametro di ricerca.</span>
+            <span class="text-center">Nessun libro trovato.</span>
         </div>
     </div>
 </div>
@@ -150,5 +166,6 @@
         $('#search-input').on('input', function () {
             filterTable();
         });
+
     });
 </script>

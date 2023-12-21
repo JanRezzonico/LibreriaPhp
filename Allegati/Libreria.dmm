@@ -91,7 +91,7 @@
 					"id": "fa268729-c7a3-4028-9620-58c18854ddb4",
 					"name": "ISBN",
 					"datatype": "CHAR",
-					"param": "13",
+					"param": "17",
 					"pk": false,
 					"nn": true,
 					"comment": "",
@@ -130,8 +130,8 @@
 				{
 					"id": "b81e08b0-680e-4493-8754-efaaa0f8aa32",
 					"name": "cover_image",
-					"datatype": "VARCHAR",
-					"param": "45",
+					"datatype": "CHAR",
+					"param": "36",
 					"pk": false,
 					"nn": false,
 					"comment": "",
@@ -689,7 +689,7 @@
 		"laststoredin": {
 			"major": 7,
 			"minor": 5,
-			"extra": 0
+			"extra": 1
 		},
 		"writeFileParam": true,
 		"authorName": "",
@@ -716,7 +716,7 @@
 			"includeSchema": "always",
 			"quotation": "if_needed"
 		},
-		"lastSaved": 1701944106000
+		"lastSaved": 1703150149238
 	},
 	"otherObjects": {},
 	"diagrams": {
@@ -734,10 +734,10 @@
 			"diagramItems": {
 				"8abdfff4-00f7-4425-8850-a954ac4405d5": {
 					"referencedItemId": "8abdfff4-00f7-4425-8850-a954ac4405d5",
-					"x": 67,
-					"y": 180,
+					"x": 100,
+					"y": 90,
 					"gHeight": 207,
-					"gWidth": 240,
+					"gWidth": 220,
 					"color": "#ffffff",
 					"background": "#03a9f4",
 					"resized": false,
@@ -747,8 +747,8 @@
 				},
 				"3c23d458-afd5-4547-9b0c-c1fb1ae8c420": {
 					"referencedItemId": "3c23d458-afd5-4547-9b0c-c1fb1ae8c420",
-					"x": 388,
-					"y": 208,
+					"x": 520,
+					"y": 140,
 					"gHeight": 99,
 					"gWidth": 220,
 					"color": "#ffffff",
@@ -760,8 +760,8 @@
 				},
 				"98353fb3-2ffd-427a-a9b9-22ebab60b85e": {
 					"referencedItemId": "98353fb3-2ffd-427a-a9b9-22ebab60b85e",
-					"x": 380,
-					"y": 329,
+					"x": 520,
+					"y": 289,
 					"gHeight": 99,
 					"gWidth": 213,
 					"color": "#ffffff",
@@ -773,8 +773,8 @@
 				},
 				"30b5bc2d-7c43-46ef-9194-d65fae33b1e9": {
 					"referencedItemId": "30b5bc2d-7c43-46ef-9194-d65fae33b1e9",
-					"x": 69,
-					"y": 418,
+					"x": 225,
+					"y": 330,
 					"gHeight": 99,
 					"gWidth": 226,
 					"color": "#ffffff",
@@ -811,9 +811,12 @@
 			"descriptionsColor": "transparent",
 			"embeddedSpacing": "2",
 			"showMainIcon": true,
-			"showLabels": true
+			"showLabels": true,
+			"boxSpacing": "2",
+			"boxAlign": "center"
 		}
 	},
+	"diagramsOrder": [],
 	"order": [
 		"8abdfff4-00f7-4425-8850-a954ac4405d5",
 		"3c23d458-afd5-4547-9b0c-c1fb1ae8c420",
